@@ -8,6 +8,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
+using Microsoft.Extensions.Configuration;
 
 namespace Burogu.Authentication
 {
@@ -16,14 +17,20 @@ namespace Burogu.Authentication
         public static void Main(string[] args)
         {
             Console.Title = "Burogu.Authentication";
-
+            
             CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
+            var config = new ConfigurationBuilder()
+                        .AddEnvironmentVariables("BUROGU_")
+                        .AddCommandLine(args)
+                        .Build();
+
             return WebHost.CreateDefaultBuilder(args)
                     .UseStartup<Startup>()
+                    .UseConfiguration(config)
                     .UseSerilog((context, configuration) =>
                     {
                         configuration
