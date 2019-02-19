@@ -21,7 +21,7 @@ namespace Burogu.Authentication
         {
             return new []
             {
-                new ApiResource("logApi", "Logger API"), 
+                new ApiResource("api", "API"), 
             };
         }
 
@@ -31,12 +31,13 @@ namespace Burogu.Authentication
             {
                 new Client
                 {
-                    ClientId = "apiClient",
+                    ClientId = "client",
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "logApi" },
+                    AllowedScopes = { "api" },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials
                 }
             };
         }
