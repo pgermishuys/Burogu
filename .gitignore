@@ -18,6 +18,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Ll]ogs/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -68,3 +69,6 @@ node_modules
 
 # Visual Studio Code
 .vscode
+
+# Artefacts
+*.rsa
